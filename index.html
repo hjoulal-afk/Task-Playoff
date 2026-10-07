@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171717">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.json">
+
+  <title>Task Playoff</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">PRODUCTIVITY TOURNAMENT</p>
+        <h1>Task Playoff</h1>
+        <p class="subtitle">Stop trying to rank everything. Just choose what matters more.</p>
+      </div>
+      <button id="resetBtn" class="ghost-btn">Reset</button>
+    </header>
+
+    <section id="setupView" class="view">
+      <div class="hero-card">
+        <span class="round-badge">01 · ADD YOUR TASKS</span>
+        <h2>What do you need to accomplish?</h2>
+        <p>Add the tasks you are considering. You don't need to rank them yourself.</p>
+
+        <div id="taskList" class="task-list"></div>
+
+        <button id="addTaskBtn" class="add-btn">＋ Add task</button>
+
+        <div class="setup-footer">
+          <span id="taskCount">0 tasks</span>
+          <button id="startBtn" class="primary-btn" disabled>Start Playoff →</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="playoffView" class="view hidden">
+      <div class="matchup-header">
+        <div>
+          <span class="round-badge">02 · PLAYOFF</span>
+          <h2>Which matters more?</h2>
+        </div>
+        <div class="progress-wrap">
+          <span id="progressText">1 / 1</span>
+          <div class="progress"><div id="progressBar"></div></div>
+        </div>
+      </div>
+
+      <div class="versus">
+        <button id="taskA" class="task-card">
+          <span class="choice-label">A</span>
+          <span id="taskAText"></span>
+        </button>
+
+        <div class="vs">VS</div>
+
+        <button id="taskB" class="task-card">
+          <span class="choice-label">B</span>
+          <span id="taskBText"></span>
+        </button>
+      </div>
+
+      <p class="instruction">Choose the task you would rather protect time for.</p>
+    </section>
+
+    <section id="resultsView" class="view hidden">
+      <div class="results-card">
+        <span class="round-badge">03 · FINAL RESULTS</span>
+        <h2>Your priorities</h2>
+        <p class="results-subtitle">Based on the choices you made during the playoff.</p>
+
+        <div id="podium" class="podium"></div>
+        <div id="rankingList" class="ranking-list"></div>
+
+        <button id="againBtn" class="primary-btn full">Run another playoff ↻</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js");
+      });
+    }
+  </script>
+</body>
+</html>
